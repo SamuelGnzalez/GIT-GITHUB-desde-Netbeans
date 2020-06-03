@@ -36,31 +36,31 @@ public class VentanaDepart extends JFrame implements ActionListener {
     Color c; //para poner colores
     // WHITE,LIGHTGRAY,GRAY,DARKGRAY,BLUE,BLACK,RED,MAGENTA,PINK,ORANGE,CYAN,GREEN,YELLOW
 
-    public VentanaDepart(JFrame f) {
+    public VentanaDepart(final JFrame f) {
         setTitle("GESTIÓN DE DEPARTAMENTOS.");
 
-        JPanel p0 = new JPanel();
+        final JPanel p0 = new JPanel();
         c = Color.CYAN;
         p0.add(titulo);
         p0.setBackground(c);
 
-        JPanel p1 = new JPanel();
+        final JPanel p1 = new JPanel();
         p1.setLayout(new FlowLayout());
         p1.add(lnum);
         p1.add(num);
         p1.add(consu);
 
-        JPanel p2 = new JPanel();
+        final JPanel p2 = new JPanel();
         p2.setLayout(new FlowLayout());
         p2.add(lnom);
         p2.add(nombre);
 
-        JPanel p3 = new JPanel();
+        final JPanel p3 = new JPanel();
         p3.setLayout(new FlowLayout());
         p3.add(lloc);
         p3.add(loc);
 
-        JPanel p4 = new JPanel();
+        final JPanel p4 = new JPanel();
         p4.setLayout(new FlowLayout());
         c = Color.YELLOW;
         p4.add(balta);
@@ -68,7 +68,7 @@ public class VentanaDepart extends JFrame implements ActionListener {
         p4.add(modif);
         p4.setBackground(c);
 
-        JPanel p5 = new JPanel();
+        final JPanel p5 = new JPanel();
         p4.setLayout(new FlowLayout());
         c = Color.PINK;
         p5.add(breset);
@@ -76,7 +76,7 @@ public class VentanaDepart extends JFrame implements ActionListener {
         p5.add(fin);
         p5.setBackground(c);
 
-        JPanel p7 = new JPanel();
+        final JPanel p7 = new JPanel();
         p7.setLayout(new FlowLayout());
         p7.add(mensaje);
 
@@ -90,7 +90,7 @@ public class VentanaDepart extends JFrame implements ActionListener {
         add(p4);
         add(p5);
         add(p7);
-        pack(); //hace que se coloquen alineados los elementos de cada JPanel
+        pack(); // hace que se coloquen alineados los elementos de cada JPanel
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,8 +103,8 @@ public class VentanaDepart extends JFrame implements ActionListener {
         ver.addActionListener(this);
     }
 
-    public void actionPerformed(ActionEvent e) {
-        int dep, confirm;
+    public void actionPerformed(final ActionEvent e) {
+        final int dep, confirm;
         if (e.getSource() == balta) {
             altadepart("PRUEBA");
         }
@@ -119,20 +119,20 @@ public class VentanaDepart extends JFrame implements ActionListener {
         if (e.getSource() == modif) {
             modifdepart("PRUEBA");
         }
-        if (e.getSource() == fin) { //SE PULSA EL BOTON salir 	
+        if (e.getSource() == fin) { // SE PULSA EL BOTON salir
             System.exit(0);
-            //dispose();   	
+            // dispose();
         }
-        if (e.getSource() == ver) { //SE PULSA EL BOTON  ver por consola  	
+        if (e.getSource() == ver) { // SE PULSA EL BOTON ver por consola
             try {
                 mensaje.setText("Visualizando el fichero por la consolaa.....");
                 verporconsola();
-            } catch (IOException e1) {
+            } catch (final IOException e1) {
                 System.out.println("ERRROR AL LEEERRRRRR AleatorioDep.dat");
-                //e1.printStackTrace();
+                // e1.printStackTrace();
             }
         }
-        if (e.getSource() == breset) { //SE PULSA EL BOTON  limpiar  	
+        if (e.getSource() == breset) { // SE PULSA EL BOTON limpiar
             mensaje.setText(" has pulsado el boton limpiar..");
             num.setText(" ");
             nombre.setText(" ");
@@ -140,10 +140,10 @@ public class VentanaDepart extends JFrame implements ActionListener {
         }
     }
 
-    public int modifdepart(String par0) throws HeadlessException {
+    public int modifdepart(final String par0) throws HeadlessException {
         int dep;
         int confirm;
-        //SE PULSA EL BOTON  modificar
+        // SE PULSA EL BOTON modificar
         mensaje.setText(" has pulsado el boton Modificar.");
         try {
             dep = Integer.parseInt(num.getText());
@@ -153,7 +153,7 @@ public class VentanaDepart extends JFrame implements ActionListener {
                     confirm = JOptionPane.showConfirmDialog(this, "ESTAS SEGURO DE MODIFICAR...", "AVISO MODIFICACI�N.",
                             JOptionPane.OK_CANCEL_OPTION);
                     // si devuelve 0 es OK
-                    //mensaje.setText(" has pulsado el boton Borrar "+ confirm);
+                    // mensaje.setText(" has pulsado el boton Borrar "+ confirm);
                     if (confirm == 0) {
                         modificar(dep);
                         mensaje.setText(" REGISTRO MODIFICADO: " + dep);
@@ -167,19 +167,19 @@ public class VentanaDepart extends JFrame implements ActionListener {
                 mensaje.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");
             }
 
-        } catch (java.lang.NumberFormatException ex) //controlar el error del Integer.parseInt
+        } catch (final java.lang.NumberFormatException ex) // controlar el error del Integer.parseInt
         {
             mensaje.setText(depar_error);
-        } catch (IOException ex2) {
+        } catch (final IOException ex2) {
             mensaje.setText(" ERRORRR EN EL FICHERO. Fichero no existe. (MODIFICAR)");
         }
         return 0;
     }
 
-    public int borradepart(String par0) throws HeadlessException {
+    public int borradepart(final String par0) throws HeadlessException {
         int dep;
         int confirm;
-        //SE PULSA EL BOTON  borrar
+        // SE PULSA EL BOTON borrar
         mensaje.setText(" has pulsado el boton Borrar");
         try {
             dep = Integer.parseInt(num.getText());
@@ -190,7 +190,7 @@ public class VentanaDepart extends JFrame implements ActionListener {
                     confirm = JOptionPane.showConfirmDialog(this, "ESTAS SEGURO DE BORRAR...", "AVISO BORRADO.",
                             JOptionPane.OK_CANCEL_OPTION);
                     // si devuelve 0 es OK
-                    //mensaje.setText(" has pulsado el boton Borrar "+ confirm);
+                    // mensaje.setText(" has pulsado el boton Borrar "+ confirm);
                     if (confirm == 0) {
                         borrar(dep);
                         mensaje.setText(" REGISTRO BORRADOO: " + dep);
@@ -206,18 +206,18 @@ public class VentanaDepart extends JFrame implements ActionListener {
                 mensaje.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");
             }
 
-        } catch (java.lang.NumberFormatException ex) //controlar el error del Integer.parseInt
+        } catch (final java.lang.NumberFormatException ex) // controlar el error del Integer.parseInt
         {
             mensaje.setText(depar_error);
-        } catch (IOException ex2) {
+        } catch (final IOException ex2) {
             mensaje.setText("ERRORRR EN EL FICHERO. Fichero no existe. (BORRAR)");
         }
         return 0;
     }
 
-    public int consuldepart(String par0) {
+    public int consuldepart(final String par0) {
         int dep;
-        //SE PULSA EL BOTON  consultar
+        // SE PULSA EL BOTON consultar
         mensaje.setText(" has pulsado el boton alta");
         try {
             dep = Integer.parseInt(num.getText());
@@ -234,18 +234,18 @@ public class VentanaDepart extends JFrame implements ActionListener {
                 mensaje.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");
             }
 
-        } catch (java.lang.NumberFormatException ex) //controlar el error del Integer.parseInt
+        } catch (final java.lang.NumberFormatException ex) // controlar el error del Integer.parseInt
         {
             mensaje.setText(depar_error);
-        } catch (IOException ex2) {
+        } catch (final IOException ex2) {
             mensaje.setText(" ERRORRR EN EL FICHERO. Fichero no existe. (ALTA)");
         }
         return 0;
     }
 
-    public int altadepart(String par0) {
+    public int altadepart(final String par0) {
         int dep;
-        //SE PULSA EL BOTON alta
+        // SE PULSA EL BOTON alta
         mensaje.setText(" has pulsado el boton alta");
         try {
             dep = Integer.parseInt(num.getText());
@@ -261,69 +261,71 @@ public class VentanaDepart extends JFrame implements ActionListener {
                 mensaje.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");
             }
 
-        } catch (java.lang.NumberFormatException ex) //controlar el error del Integer.parseInt
+        } catch (final java.lang.NumberFormatException ex) // controlar el error del Integer.parseInt
         {
             mensaje.setText(depar_error);
-        } catch (IOException ex2) {
+        } catch (final IOException ex2) {
             mensaje.setText("ERRORRR EN EL FICHERO. Fichero no existe. (ALTA)");
             // lo creo
 
         }
         return 0;
     }
-    private String depar_error = "DEPARTAMENTO ERRÓNEO";
-    private String existedepart = "DEPARTAMENTO EXISTE.";
+
+    private final String depar_error = "DEPARTAMENTO ERRÓNEO";
+    private final String existedepart = "DEPARTAMENTO EXISTE.";
     private static final String NOEXISTEDEPART = "DEPARTAMENTO NO EXISTE.";
 
     public void verporconsola() throws IOException {
-        claseAnidada ej = new claseAnidada();
+        final claseAnidada ej = new claseAnidada();
         ej.entrada();
         System.out.println("LLamo a Salida: " + ej.salida(10));
         String nom = "", loc = "";
         int dep = 0;
         long pos;
-        File fichero = new File("AleatorioDep.dat");
-        RandomAccessFile file = new RandomAccessFile(fichero, "r");
-        char cad[] = new char[10], aux;
+        final File fichero = new File("AleatorioDep.dat");
+        final RandomAccessFile file = new RandomAccessFile(fichero, "r");
+        final char cad[] = new char[10];
+        char aux;
         if (file.length() > 0) {
-            pos = 0;  //para situarnos al principio
+            pos = 0; // para situarnos al principio
             System.out.println(" ------------------------------------------");
             System.out.println(" - - - VISUALIZO POR CONSOLAAAAA ");
-            for (;;) {  //recorro el fichero, visualiza tambi�n las posiciones vac�as
+            for (;;) { // recorro el fichero, visualiza tambi�n las posiciones vac�as
                 file.seek(pos);
-                dep = file.readInt();   // obtengo el dep	  	  
+                dep = file.readInt(); // obtengo el dep
                 for (int i = 0; i < cad.length; i++) {
-                    aux = file.readChar();//recorro uno a uno los caracteres del apellido 
-                    cad[i] = aux;    //los voy guardando en el array
+                    aux = file.readChar();// recorro uno a uno los caracteres del apellido
+                    cad[i] = aux; // los voy guardando en el array
                 }
-                nom = new String(cad);//convierto a String el array
+                nom = new String(cad);// convierto a String el array
                 for (int i = 0; i < cad.length; i++) {
                     aux = file.readChar();
                     cad[i] = aux;
                 }
-                loc = new String(cad);//convierto a String el array
+                loc = new String(cad);// convierto a String el array
                 System.out.println("DEP: " + dep + ", Nombre: " + nom + ", Localidad: " + loc);
                 pos = pos + 44;
-                //Si he recorrido todos los bytes salgo del for	 	  
+                // Si he recorrido todos los bytes salgo del for
                 if (file.getFilePointer() == file.length()) {
                     break;
                 }
 
-            }//fin bucle for 
-            file.close();  //cerrar fichero 
+            } // fin bucle for
+            file.close(); // cerrar fichero
             System.out.println(" ------------------------------------------");
-        } else //esto s�lo sale la primera vez
+        } else // esto s�lo sale la primera vez
         {
             System.out.println(" ---------FICHERO VACI�IOOOO --------------------");
         }
 
     }// fin verporconsola
 
-    boolean consultar(int dep) throws IOException {
+    boolean consultar(final int dep) throws IOException {
         long pos;
         int depa;
-        File fichero = new File("AleatorioDep.dat");
-        RandomAccessFile file = new RandomAccessFile(fichero, "r");
+        final File fichero = new File("AleatorioDep.dat");
+        final RandomAccessFile file = new RandomAccessFile(fichero, "r");
         // Calculo del reg a leer
         try {
             pos = 44 * (dep - 1);
@@ -339,25 +341,27 @@ public class VentanaDepart extends JFrame implements ActionListener {
             } else {
                 return false;
             }
-        } catch (IOException ex2) {
+        } catch (final IOException ex2) {
             System.out.println(" ERRORRR al leerrrrr..");
             return false;
         }
     } // fin consultar
 
-    void visualiza(int dep) {
+    void visualiza(final int dep) {
         String nom = "", loca = "";
         long pos;
         int depa;
-        File fichero = new File("AleatorioDep.dat");
+        final File fichero = new File("AleatorioDep.dat");
         try {
-            RandomAccessFile file = new RandomAccessFile(fichero, "r");
+            final RandomAccessFile file = new RandomAccessFile(fichero, "r");
             // Calculo del reg a leer
             pos = 44 * (dep - 1);
             file.seek(pos);
             depa = file.readInt();
             System.out.println("Depart leido:" + depa);
-            char nom1[] = new char[10], aux, loc1[] = new char[10];
+            final char nom1[] = new char[10];
+            char aux;
+            final char loc1[] = new char[10];
             for (int i = 0; i < 10; i++) {
                 aux = file.readChar();
                 nom1[i] = aux;
@@ -372,24 +376,24 @@ public class VentanaDepart extends JFrame implements ActionListener {
             nombre.setText(nom);
             loc.setText(loca);
             file.close();
-        } catch (IOException e1) {
+        } catch (final IOException e1) {
             System.out.println("ERRROR AL LEEERRRRRR AleatorioDep.dat");
             e1.printStackTrace();
         }
     } // fin visualiza
 
-    void borrar(int dep) {	    // con borrar ponemos a 0 el dep que se quiere borrar
+    void borrar(final int dep) { // con borrar ponemos a 0 el dep que se quiere borrar
         // y a blancos el nombre y la localidad
-        String nom = "", loca = "";
+        final String nom = "", loca = "";
         StringBuffer buffer = null;
         long pos;
-        File fichero = new File("AleatorioDep.dat");
+        final File fichero = new File("AleatorioDep.dat");
         try {
-            RandomAccessFile file = new RandomAccessFile(fichero, "rw");
+            final RandomAccessFile file = new RandomAccessFile(fichero, "rw");
             // Calculo del reg a leer
             pos = 44 * (dep - 1);
             file.seek(pos);
-            int depp = 0;
+            final int depp = 0;
             file.writeInt(depp);
             buffer = new StringBuffer(nom);
             buffer.setLength(10);
@@ -401,19 +405,19 @@ public class VentanaDepart extends JFrame implements ActionListener {
             System.out.println("----REGISTRO BORRADO--------");
 
             file.close();
-        } catch (IOException e1) {
+        } catch (final IOException e1) {
             System.out.println("ERRROR AL BORRARRR AleatorioDep.dat");
             e1.printStackTrace();
         }
     } // fin borrar
 
-    void modificar(int dep) {	    // con modificar asignamos los datos tecleados
+    void modificar(final int dep) { // con modificar asignamos los datos tecleados
         String nom = "", loca = "";
         StringBuffer buffer = null;
         long pos;
-        File fichero = new File("AleatorioDep.dat");
+        final File fichero = new File("AleatorioDep.dat");
         try {
-            RandomAccessFile file = new RandomAccessFile(fichero, "rw");
+            final RandomAccessFile file = new RandomAccessFile(fichero, "rw");
             // Calculo del reg a leer
             pos = 44 * (dep - 1);
             file.seek(pos);
@@ -429,33 +433,33 @@ public class VentanaDepart extends JFrame implements ActionListener {
             System.out.println("----REGISTRO MODIFICADOOO--------");
 
             file.close();
-        } catch (IOException e1) {
+        } catch (final IOException e1) {
             System.out.println("ERRROR AL MODIFICARRR AleatorioDep.dat");
             e1.printStackTrace();
         }
     } // fin modificar
 
-    void grabar(int dep, String nom, String loc) {
+    void grabar(final int dep, final String nom, final String loc) {
         long pos;
         StringBuffer buffer = null;
-        File fichero = new File("AleatorioDep.dat");
+        final File fichero = new File("AleatorioDep.dat");
         try {
-            RandomAccessFile file = new RandomAccessFile(fichero, "rw");
+            final RandomAccessFile file = new RandomAccessFile(fichero, "rw");
             // Calculo del reg a leer
             pos = 44 * (dep - 1);
-            //if (file.length()==0) return false; // si est� vac�o
+            // if (file.length()==0) return false; // si est� vac�o
 
             file.seek(pos);
             file.writeInt(dep);
             buffer = new StringBuffer(nom);
             buffer.setLength(10);
-            file.writeChars(buffer.toString());//insertar nombre
+            file.writeChars(buffer.toString());// insertar nombre
             buffer = new StringBuffer(loc);
             buffer.setLength(10);
-            file.writeChars(buffer.toString());//insertar loc
+            file.writeChars(buffer.toString());// insertar loc
             file.close();
             System.out.println(" GRABADOOO el " + dep);
-        } catch (IOException e1) {
+        } catch (final IOException e1) {
             System.out.println("ERRROR AL grabarr AleatorioDep.dat");
             e1.printStackTrace();
         }
